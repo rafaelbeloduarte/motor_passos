@@ -145,4 +145,5 @@ void loop() {
     diminui = diminui - passo;
     aumenta = aumenta + passo;
   }
+
 }
