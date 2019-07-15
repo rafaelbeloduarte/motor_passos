@@ -1,17 +1,12 @@
 int intervalo = 1, passo = 127;
 int i = 0;
 float aumenta, diminui, n_voltas, j;
-int para = 0;
 
 void setup() {
   Serial.begin(9600);
 }
 //512?
 void loop() {
-  //  while (para == 0) {
-  //    para = Serial.parseInt();
-  //  }
-  //  para = 0;
   while (Serial.available() == 0) {
     Serial.println("Passo,n_voltas?");
     passo = Serial.parseInt();
@@ -19,83 +14,80 @@ void loop() {
     Serial.println(passo);
     Serial.println(n_voltas);
   }
-  //aceleração
-  if (i == 0) {
-    for (int m = 1; m <= 512; m++) {
-      analogWrite(6, 255);
-      analogWrite(9, 0);
-      delay(1);
-
-      analogWrite(6, 255);
-      analogWrite(9, 255);
-      delay(1);
-
-      analogWrite(6, 0);
-      analogWrite(9, 255);
-      delay(1);
-
-      analogWrite(9, 255);
-      analogWrite(10, 0);
-      delay(1);
-
-      analogWrite(9, 255);
-      analogWrite(10, 255);
-      delay(1);
-
-      analogWrite(9, 0);
-      analogWrite(10, 255);
-      delay(1);
-
-      analogWrite(10, 255);
-      analogWrite(11, 0);
-      delay(1);
-
-      analogWrite(10, 255);
-      analogWrite(11, 255);
-      delay(1);
-
-      analogWrite(10, 0);
-      analogWrite(11, 255);
-      delay(1);
-
-      analogWrite(11, 255);
-      analogWrite(6, 0);
-      delay(1);
-
-      analogWrite(11, 255);
-      analogWrite(6, 255);
-      delay(1);
-
-      analogWrite(11, 0);
-      analogWrite(6, 255);
-      delay(1);
+//  aceleração
+    if (i == 0) {
+      for (int m = 1; m <= 512; m++) {
+        analogWrite(3, 255);
+        analogWrite(9, 0);
+        delay(1);
+  
+        analogWrite(3, 255);
+        analogWrite(9, 255);
+        delay(1);
+  
+        analogWrite(3, 0);
+        analogWrite(9, 255);
+        delay(1);
+  
+        analogWrite(9, 255);
+        analogWrite(10, 0);
+        delay(1);
+  
+        analogWrite(9, 255);
+        analogWrite(10, 255);
+        delay(1);
+  
+        analogWrite(9, 0);
+        analogWrite(10, 255);
+        delay(1);
+  
+        analogWrite(10, 255);
+        analogWrite(11, 0);
+        delay(1);
+  
+        analogWrite(10, 255);
+        analogWrite(11, 255);
+        delay(1);
+  
+        analogWrite(10, 0);
+        analogWrite(11, 255);
+        delay(1);
+  
+        analogWrite(11, 255);
+        analogWrite(3, 0);
+        delay(1);
+  
+        analogWrite(11, 255);
+        analogWrite(3, 255);
+        delay(1);
+  
+        analogWrite(11, 0);
+        analogWrite(3, 255);
+        delay(1);
+      }
     }
-  }
-  i = 1;
-  j = (n_voltas - 1) * 512;
+    i = 1;
+  j = (n_voltas) * 550;
   Serial.println(j);
-  for (int k; k <= j; k++) {
+  for (int k; k < j; k++) {
     //    Serial.println(k);
-    //------6cte-9aumenta---------------------
-    analogWrite(6, 255);
-    analogWrite(9, 0);
-    analogWrite(10, 0);
-    analogWrite(11, 0);
+    //------3cte-9aumenta---------------------
+    analogWrite(3, 255);
     for (aumenta = 0; aumenta <= 255; aumenta = aumenta + passo) {
-      //      Serial.println(aumenta);
+      Serial.println(aumenta);
       analogWrite(9, aumenta);
       delay(intervalo);
     }
     analogWrite(9, 255);
     //----------------------------------------
 
-    //------6diminui-9cte---------------------
+    //------3diminui-9cte---------------------
     for (diminui = 255; diminui >= 0; diminui = diminui - passo) {
       Serial.println(diminui);
-      analogWrite(6, diminui);
+      analogWrite(3, diminui);
       delay(intervalo);
     }
-    analogWrite(6, 0);
+    analogWrite(3, 0);
     //----------------------------------------
 
     //------9cte-10aumenta--------------------
@@ -130,16 +122,16 @@ void loop() {
     analogWrite(10, 0);
     //----------------------------------------
 
-    //------11cte-6aumenta--------------------
+    //------11cte-3aumenta--------------------
     for (aumenta = 0; aumenta <= 255; aumenta = aumenta + passo) {
-      analogWrite(6, aumenta);
+      analogWrite(3, aumenta);
       delay(intervalo);
     }
-    analogWrite(6, 255);
+    analogWrite(3, 255);
     //----------------------------------------
 
 
-    //-----6cte-11diminui---------------------
+    //-----3cte-11diminui---------------------
     for (diminui = 255; diminui >= 0; diminui = diminui - passo) {
       analogWrite(11, diminui);
       delay(intervalo);
